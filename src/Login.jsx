@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import './Login.css';
+import { useState } from "react";
+import { postLogin } from "./services/api";
+import PropTypes from "prop-types";
+
+import "./Login.css";
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
@@ -8,28 +11,15 @@ const Login = ({ onLogin }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('https://reqres.in/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const data = await postLogin({ email, password });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        // Si la autenticación es exitosa, llamamos a la función onLogin pasada por las props
-        if (data.token) {
-          onLogin(data.token);
-        } else {
-          setError('* Credenciales inválidas');
-        }
+      if (data.token) {
+        onLogin(data.token);
       } else {
-        setError('* Credenciales inválidas');
+        setError("* Credenciales inválidas");
       }
     } catch (error) {
-      setError('Error al realizar el login');
+      setError(error.message);
     }
   };
 
@@ -56,6 +46,10 @@ const Login = ({ onLogin }) => {
       <button onClick={handleLogin}>Login</button>
     </div>
   );
+};
+
+Login.PropTypes = {
+  onLogin: PropTypes.func.isRequired,
 };
 
 export default Login;

@@ -1,4 +1,5 @@
 import { RiDeleteBin2Line } from 'react-icons/ri';
+import PropTypes from "prop-types";
 
 export function TaskItem ({ task, onToggle, onTextChange, onDelete }){
   return (
@@ -20,3 +21,14 @@ export function TaskItem ({ task, onToggle, onTextChange, onDelete }){
     </li>
   );
 }
+
+TaskItem.propTypes = {
+  task: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
+  }).isRequired,
+  onToggle: PropTypes.func.isRequired,
+  onTextChange: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
