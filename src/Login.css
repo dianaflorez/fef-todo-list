@@ -1,0 +1,29 @@
+.p-error{
+  color: red !important;
+}
+
+
+.title-login {
+  font-size: 53px;
+  font-family: "Lavishly Yours", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(222, 97, 117);
+}
+
+
+button {
+  background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgb(213 76 184) 93%, rgb(145 6 179) 100%);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 11px;
+}
+
+button:hover {
+  border-color: #11237f;
+  background: #270223;
+}
